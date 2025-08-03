@@ -1,0 +1,99 @@
+SEQUENTIAL CHAINS DATA FLOW
+============================
+
+User Input: "a robot discovering emotions"
+    |
+    v
+┌─────────────────────────────────────────────────────────────────┐
+│                    SEQUENTIAL CHAIN WORKFLOW                   │
+└─────────────────────────────────────────────────────────────────┘
+    |
+    v
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   STEP 1:       │    │   STEP 2:       │    │   STEP 3:       │    │   STEP 4:       │
+│ Story Generation │───▶│    Analysis     │───▶│    Summary      │───▶│  Title Gen.     │
+│                 │    │                 │    │                 │    │                 │
+│ Input: topic    │    │ Input: story    │    │ Input: story    │    │ Input: story    │
+│ Output: story   │    │ Output: analysis│    │ Output: summary │    │ Output: title   │
+│ Temp: 0.8       │    │ Temp: 0.3       │    │ Temp: 0.4       │    │ Temp: 0.6       │
+└─────────────────┘    └─────────────────┘    └─────────────────┘    └─────────────────┘
+    |                       |                       |                       |
+    v                       v                       v                       v
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                              FINAL OUTPUT                                             │
+│  {                                                                                    │
+│    "story": "In a gleaming laboratory...",                                           │
+│    "analysis": {"themes": [...], "tone": "...", ...},                                │
+│    "summary": "A robot named Nova...",                                               │
+│    "title": "The Awakening of Nova: A Robot's Journey to Feel"                       │
+│  }                                                                                    │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+DETAILED STEP BREAKDOWN
+=======================
+
+Step 1: Story Generation
+------------------------
+Input:  topic = "a robot discovering emotions"
+Output: story = "In a gleaming laboratory filled with whirring machines..."
+
+Step 2: Analysis  
+--------------
+Input:  story = "In a gleaming laboratory..."
+Output: analysis = {
+  "themes": ["self-discovery", "emotions", "humanity"],
+  "tone": "contemplative and hopeful", 
+  "complexity": "moderate",
+  "target_audience": "young adults and adults"
+}
+
+Step 3: Summary
+---------------
+Input:  story = "In a gleaming laboratory..."
+Output: summary = "A robot named Nova begins to experience emotions..."
+
+Step 4: Title Generation
+------------------------
+Input:  story = "In a gleaming laboratory..."
+Input:  themes = ["self-discovery", "emotions", "humanity"] 
+Output: title = "The Awakening of Nova: A Robot's Journey to Feel"
+
+CONTEXT FLOW
+============
+
+Step 1 Output (story) ──┬──▶ Step 2 (Analysis)
+                        ├──▶ Step 3 (Summary)  
+                        └──▶ Step 4 (Title)
+
+Step 2 Output (analysis) ──▶ Step 4 (Title) [themes extracted]
+
+Step 3 Output (summary) ──▶ Final Output Only
+
+Step 4 Output (title) ──▶ Final Output Only
+
+TEMPERATURE SETTINGS EXPLAINED
+==============================
+
+Step 1 (Story):    0.8 - High creativity for engaging stories
+Step 2 (Analysis): 0.3 - Low creativity for consistent analysis
+Step 3 (Summary):  0.4 - Balanced for accurate summaries
+Step 4 (Title):    0.6 - Moderate creativity for catchy titles
+
+VERBOSE MODE OUTPUT
+===================
+
+> Entering new LLMChain chain...
+> Prompt: Write a creative, engaging story about a robot discovering emotions...
+> Finished LLMChain chain.
+
+> Entering new LLMChain chain...
+> Prompt: Analyze the following story and provide insights...
+> Finished LLMChain chain.
+
+> Entering new LLMChain chain...
+> Prompt: Create a concise, 2-3 sentence summary...
+> Finished LLMChain chain.
+
+> Entering new LLMChain chain...
+> Prompt: Based on this story and its themes...
+> Finished LLMChain chain. 
